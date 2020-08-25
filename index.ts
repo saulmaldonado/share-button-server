@@ -2,6 +2,7 @@ import Koa, { Context } from 'koa';
 import redis from 'redis';
 import { config } from 'dotenv';
 import bodyParser from 'koa-bodyparser';
+import Router from '@koa/router';
 
 import { Sites } from './types';
 import { facebookService } from './services/facebook';
@@ -14,7 +15,7 @@ import { twitterService } from './services/twitter';
 config();
 
 const app = new Koa();
-app.use(bodyParser());
+const router = new Router();
 
 const redisClient = redis.createClient();
 
@@ -22,11 +23,11 @@ redisClient.on('error', (error) => {
   console.error(error);
 });
 
-redisClient.on('connect', (what) => {
+redisClient.on('connect', () => {
   console.log('redis connected');
 });
 
-app.use(async (ctx: Context) => {
+router.post('/', async (ctx: Context) => {
   const {
     facebook,
     facebookMessenger,
@@ -47,6 +48,9 @@ app.use(async (ctx: Context) => {
 
   ctx.body = JSON.stringify(urls);
 });
+
+app.use(bodyParser());
+app.use(router.routes());
 
 const port = process.env.port ?? 5000;
 

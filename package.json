@@ -11,6 +11,7 @@
     "start": "tsnd --respawn index.ts"
   },
   "dependencies": {
+    "@koa/router": "^9.4.0",
     "@types/koa__router": "^8.0.2",
     "dotenv": "^8.2.0",
     "koa": "^2.13.0",
