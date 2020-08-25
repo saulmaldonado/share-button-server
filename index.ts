@@ -5,12 +5,14 @@ import bodyParser from 'koa-bodyparser';
 import Router from '@koa/router';
 
 import { Sites } from './types';
-import { facebookService } from './services/facebook';
-import { facebookMessengerService } from './services/facebookMessenger';
-import { pinterestService } from './services/pinterest';
-import { redditService } from './services/reddit';
-import { linkedinService } from './services/linkedin';
-import { twitterService } from './services/twitter';
+import {
+  facebookMessengerService,
+  facebookService,
+  linkedinService,
+  pinterestService,
+  redditService,
+  twitterService,
+} from './services';
 
 config();
 
