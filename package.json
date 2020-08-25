@@ -7,6 +7,9 @@
   "author": "Saul Maldonado",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "tsnd --respawn index.ts"
+  },
   "dependencies": {
     "dotenv": "^8.2.0",
     "koa": "^2.13.0",
