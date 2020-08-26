@@ -1,7 +1,11 @@
 import { RedisClient } from 'redis';
 import { Context } from 'koa';
 
-export const asyncGet = async (client: RedisClient, key: string, field: string) => {
+export const asyncGet = async (
+  client: RedisClient,
+  key: string,
+  field: string
+): Promise<string | null> => {
   return new Promise<string>((resolve, reject) =>
     client.hget(key, field, (err, res) => {
       if (err) return reject(err);
@@ -20,14 +24,14 @@ export const asyncSet = async (client: RedisClient, key: string, field: string, 
 };
 
 type useCacheTuple = [
-  (url: string) => Promise<string>,
+  (url: string) => Promise<string | null>,
   (url: string, value: string) => Promise<void>
 ];
 
 export const useCache = (ctx: Context, cacheField: string): useCacheTuple => {
   const redisClient = ctx.redis as RedisClient;
 
-  let val: string;
+  let val: string | null;
 
   const getCache = async (url: string) => {
     try {
