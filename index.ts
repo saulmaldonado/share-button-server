@@ -21,6 +21,8 @@ const router = new Router();
 
 const redisClient = redis.createClient();
 
+app.context.redis = redisClient;
+
 redisClient.on('error', (error) => {
   console.error(error);
 });
@@ -40,12 +42,12 @@ router.post('/', async (ctx: Context) => {
   }: Sites = ctx.request.body;
 
   const urls = await Promise.all([
-    facebookService(facebook),
-    facebookMessengerService(facebookMessenger),
-    pinterestService(pinterest),
-    redditService(reddit),
-    linkedinService(linkedin),
-    twitterService(twitter),
+    facebookService(facebook, ctx),
+    facebookMessengerService(facebookMessenger, ctx),
+    pinterestService(pinterest, ctx),
+    redditService(reddit, ctx),
+    linkedinService(linkedin, ctx),
+    twitterService(twitter, ctx),
   ]);
 
   ctx.body = JSON.stringify(urls);
