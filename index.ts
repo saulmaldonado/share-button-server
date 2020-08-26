@@ -43,7 +43,7 @@ router.post('/', async (ctx: Context) => {
     twitter,
   }: Sites = ctx.request.body;
 
-  const urls = await Promise.all([
+  let urls = await Promise.all([
     facebookService(facebook, ctx),
     facebookMessengerService(facebookMessenger, ctx),
     pinterestService(pinterest, ctx),
@@ -52,7 +52,16 @@ router.post('/', async (ctx: Context) => {
     twitterService(twitter, ctx),
   ]);
 
-  ctx.body = JSON.stringify(urls);
+  const urlMap = {
+    facebook: urls[0],
+    facebookMessenger: urls[1],
+    pinterest: urls[2],
+    reddit: urls[3],
+    linkedin: urls[4],
+    twitter: urls[5],
+  };
+
+  ctx.body = JSON.stringify(urlMap);
 });
 
 app.use(bodyParser());
