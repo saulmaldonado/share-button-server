@@ -1,6 +1,6 @@
 {
   "name": "share-button-server",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Server for share button react component",
   "main": "dist/index.js",
   "repository": "https://github.com/saulmaldonado/share-button-server",
@@ -9,6 +9,7 @@
   "private": true,
   "scripts": {
     "start-dev": "tsnd --respawn index.ts",
+    "start": "node dist/index.js",
     "build": "webpack"
   },
   "dependencies": {
