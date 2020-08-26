@@ -36,7 +36,6 @@ export const useCache = (ctx: Context, cacheField: string): useCacheTuple => {
   const getCache = async (url: string) => {
     try {
       val = await asyncGet(redisClient, url, cacheField);
-      console.log(`from cache: ${val}`);
     } catch (error) {
       console.error(error);
     }
@@ -49,7 +48,6 @@ export const useCache = (ctx: Context, cacheField: string): useCacheTuple => {
     } catch (error) {
       console.error(error);
     }
-    console.log(`set: ${url}: ${value}`);
     val = value;
   };
 
