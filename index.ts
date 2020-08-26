@@ -3,6 +3,7 @@ import redis from 'redis';
 import { config } from 'dotenv';
 import bodyParser from 'koa-bodyparser';
 import Router from '@koa/router';
+import cors from '@koa/cors';
 
 import { Sites } from './types';
 import {
@@ -17,6 +18,7 @@ import {
 config();
 
 const app = new Koa();
+app.use(cors({ origin: '*' }));
 const router = new Router({ prefix: process.env.ROUTE_PREFIX });
 
 const redisClient = redis.createClient();
