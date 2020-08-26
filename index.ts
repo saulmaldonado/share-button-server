@@ -17,7 +17,7 @@ import {
 config();
 
 const app = new Koa();
-const router = new Router();
+const router = new Router({ prefix: process.env.ROUTE_PREFIX });
 
 const redisClient = redis.createClient();
 

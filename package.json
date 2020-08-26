@@ -6,7 +6,6 @@
   "repository": "https://github.com/saulmaldonado/share-button-server",
   "author": "Saul Maldonado",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "start-dev": "tsnd --respawn index.ts",
     "start": "node dist/index.js",
