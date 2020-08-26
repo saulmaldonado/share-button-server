@@ -1,8 +1,8 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      REDIS_URL?: string;
       PORT?: string;
+      FB_APP_ID?: string;
     }
   }
 }

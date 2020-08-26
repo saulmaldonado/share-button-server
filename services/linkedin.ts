@@ -1,4 +1,5 @@
 import { Service } from '../types';
+import { linkedinGenerator } from './generators';
 import { useCache } from './RedisHelpers';
 
 export const linkedinService: Service = async (url, ctx) => {
@@ -10,9 +11,9 @@ export const linkedinService: Service = async (url, ctx) => {
   const cachedUrl = await getCache(url);
 
   if (!cachedUrl) {
-    const newValue = 'https://linkedin.com';
-    await setCache(url, newValue);
-    return newValue;
+    const transformedUrl = linkedinGenerator(url);
+    await setCache(url, transformedUrl);
+    return transformedUrl;
   } else {
     return cachedUrl;
   }

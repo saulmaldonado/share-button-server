@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@koa/router": "^9.4.0",
-    "@types/koa__router": "^8.0.2",
     "dotenv": "^8.2.0",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
@@ -21,6 +20,7 @@
   "devDependencies": {
     "@types/koa": "^2.11.4",
     "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa__router": "^8.0.2",
     "@types/node": "^14.6.0",
     "@types/redis": "^2.8.26",
     "ts-node-dev": "^1.0.0-pre.60",

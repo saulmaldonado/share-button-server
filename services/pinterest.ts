@@ -1,4 +1,5 @@
 import { Service } from '../types';
+import { pinterestGenerator } from './generators';
 import { useCache } from './RedisHelpers';
 
 export const pinterestService: Service = async (url, ctx) => {
@@ -10,9 +11,9 @@ export const pinterestService: Service = async (url, ctx) => {
   const cachedUrl = await getCache(url);
 
   if (!cachedUrl) {
-    const newValue = 'https://pinterest.com';
-    await setCache(url, newValue);
-    return newValue;
+    const transformedUrl = pinterestGenerator(url);
+    await setCache(url, transformedUrl);
+    return transformedUrl;
   } else {
     return cachedUrl;
   }

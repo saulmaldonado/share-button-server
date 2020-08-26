@@ -1,4 +1,5 @@
 import { Service } from '../types';
+import { facebookMessengerGenerator } from './generators';
 import { useCache } from './RedisHelpers';
 
 export const facebookMessengerService: Service = async (url, ctx) => {
@@ -10,9 +11,9 @@ export const facebookMessengerService: Service = async (url, ctx) => {
   const cachedUrl = await getCache(url);
 
   if (!cachedUrl) {
-    const newValue = 'https://messenger.com';
-    await setCache(url, newValue);
-    return newValue;
+    const transformedUrl = facebookMessengerGenerator(url);
+    await setCache(url, transformedUrl);
+    return transformedUrl;
   } else {
     return cachedUrl;
   }

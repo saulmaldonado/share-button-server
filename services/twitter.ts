@@ -1,4 +1,5 @@
 import { Service } from '../types';
+import { twitterGenerator } from './generators';
 import { useCache } from './RedisHelpers';
 
 export const twitterService: Service = async (url, ctx) => {
@@ -10,9 +11,9 @@ export const twitterService: Service = async (url, ctx) => {
   const cachedUrl = await getCache(url);
 
   if (!cachedUrl) {
-    const newValue = 'https://twitter.com';
-    await setCache(url, newValue);
-    return newValue;
+    const transformedUrl = twitterGenerator(url);
+    await setCache(url, transformedUrl);
+    return transformedUrl;
   } else {
     return cachedUrl;
   }
