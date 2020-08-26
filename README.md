@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> Server for share button react component
+> Server for share-button React component
 
 ## Install
 
