@@ -1,9 +1,8 @@
-import { url } from 'inspector';
 import { Service } from '../types';
 import { useCache } from './RedisHelpers';
 
 export const twitterService: Service = async (url, ctx) => {
-  if (!url) return Promise.resolve(null);
+  if (!url) return null;
   const cacheField = 'twitter';
 
   const [getCache, setCache] = useCache(ctx, cacheField);

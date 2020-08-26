@@ -2,7 +2,7 @@ import { Service } from '../types';
 import { useCache } from './RedisHelpers';
 
 export const pinterestService: Service = async (url, ctx) => {
-  if (!url) return Promise.resolve(null);
+  if (!url) return null;
   const cacheField = 'pinterest';
 
   const [getCache, setCache] = useCache(ctx, cacheField);
